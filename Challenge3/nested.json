@@ -1,0 +1,24 @@
+def get_value_from_nested_object(obj, key):
+    keys = key.split('/')  # Split the key into individual levels
+    
+    # Traverse the nested object using the keys
+    for k in keys:
+        if isinstance(obj, dict) and k in obj:
+            obj = obj[k]
+        else:
+            return None  # Key not found, return None
+    
+    return obj
+
+# Example usage
+nested_object1 = {"a": {"b": {"c": "d"}}}
+nested_object2 = {"x": {"y": {"z": "a"}}}
+
+key1 = "a/b/c"
+key2 = "x/y/z"
+
+value1 = get_value_from_nested_object(nested_object1, key1)
+value2 = get_value_from_nested_object(nested_object2, key2)
+
+print(value1)  # Output: d
+print(value2)  # Output: a
